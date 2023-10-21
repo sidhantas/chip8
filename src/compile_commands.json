@@ -1,0 +1,82 @@
+[
+ {
+  "directory": "/Users/sidhantasharma/Documents/C/Chip8",
+  "arguments": [
+   "/opt/homebrew/opt/llvm/bin/clang",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-w",
+   "-D_XOPEN_SOURCE_EXTENDED",
+   "-c",
+   "src/decoder.c",
+   "-o",
+   "obj/decoder.o"
+  ],
+  "file": "src/decoder.c"
+ },
+ {
+  "directory": "/Users/sidhantasharma/Documents/C/Chip8",
+  "arguments": [
+   "/opt/homebrew/opt/llvm/bin/clang",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-w",
+   "-D_XOPEN_SOURCE_EXTENDED",
+   "-c",
+   "src/hardware.c",
+   "-o",
+   "obj/hardware.o"
+  ],
+  "file": "src/hardware.c"
+ },
+ {
+  "directory": "/Users/sidhantasharma/Documents/C/Chip8",
+  "arguments": [
+   "/opt/homebrew/opt/llvm/bin/clang",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-w",
+   "-D_XOPEN_SOURCE_EXTENDED",
+   "-c",
+   "src/io.c",
+   "-o",
+   "obj/io.o"
+  ],
+  "file": "src/io.c"
+ },
+ {
+  "directory": "/Users/sidhantasharma/Documents/C/Chip8",
+  "arguments": [
+   "/opt/homebrew/opt/llvm/bin/clang",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-w",
+   "-D_XOPEN_SOURCE_EXTENDED",
+   "-c",
+   "src/opcodes.c",
+   "-o",
+   "obj/opcodes.o"
+  ],
+  "file": "src/opcodes.c"
+ },
+ {
+  "directory": "/Users/sidhantasharma/Documents/C/Chip8",
+  "arguments": [
+   "/opt/homebrew/opt/llvm/bin/clang",
+   "-g",
+   "-Wall",
+   "-Werror",
+   "-w",
+   "-D_XOPEN_SOURCE_EXTENDED",
+   "-c",
+   "src/chip8.c",
+   "-o",
+   "obj/chip8.o"
+  ],
+  "file": "src/chip8.c"
+ }
+]
