@@ -17,6 +17,7 @@ uint16_t opcode;
 uint8_t kp[KEYPAD_SIZE];
 FILE *ROM;
 int8_t most_recent_key;
+uint16_t clock_rate;
 
 void initialize_hardware() {
     memset(registers, 0, NUM_REGISTERS);
@@ -32,6 +33,7 @@ void initialize_hardware() {
     opcode = 0;
     ROM = NULL;
     most_recent_key = -1;
+    clock_rate = 500;
 }
 
 void update_tick() {

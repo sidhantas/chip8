@@ -1,4 +1,5 @@
 #pragma once
+#include "argp.h"
 #include <inttypes.h>
 #include <stdio.h>
 
@@ -28,13 +29,7 @@ extern uint16_t opcode;
 extern uint8_t kp[KEYPAD_SIZE];
 extern int8_t most_recent_key;
 extern FILE *ROM;
-
-typedef struct opcodeMap
-{
-    uint16_t opcode;
-    void (*operation)();
-} opcodeMap;
-
+extern uint16_t clock_rate;
 
 static const uint8_t fontset[FONTSET_SIZE] = {
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -54,6 +49,7 @@ static const uint8_t fontset[FONTSET_SIZE] = {
     0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
+
 
 void initialize_hardware();
 void instruction_loop();

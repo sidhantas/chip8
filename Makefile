@@ -1,6 +1,6 @@
 CC=/opt/homebrew/opt/llvm/bin/clang
-CFLAGS=-g -Wall -Werror -w -D_XOPEN_SOURCE_EXTENDED
-LDFLAGS=-lncurses -framework ApplicationServices -framework Carbon -pthread
+CFLAGS=-g -Wall -Werror -w -D_XOPEN_SOURCE_EXTENDED -I/opt/homebrew/Cellar/argp-standalone/1.3/include
+LDFLAGS=-lncurses -framework ApplicationServices -framework Carbon -pthread -L/opt/homebrew/Cellar/argp-standalone/1.3/lib
 SRC_DIR := src
 OBJ_DIR := obj
 BIN_DIR := .
@@ -39,4 +39,4 @@ $(TEST_OBJ): $(TEST_SRC)
 -include $(OBJ.o=.d)
 
 clean:
-	rm -rf **/*.o chip8
+	rm -rf $(OBJ_DIR) $(EXE) $(TEST)

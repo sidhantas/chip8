@@ -3,6 +3,7 @@
 #include "opcodes.h"
 #include <ncurses.h>
 #include <unistd.h>
+#include <sys/time.h>
 #include <wchar.h>
 
 uint8_t get_pixel(uint8_t row, uint8_t col) {
@@ -30,12 +31,20 @@ void print_display() {
 }
 
 void instruction_loop() {
+    struct timeval start, end, diff;
     while ((opcode = fetch_instruction())) {
+        gettimeofday(&start, NULL);
         update_tick();
         void *instruction = decode_instruction(opcode);
         execute_instruction(instruction);
         print_display();
-        usleep(2000);
+        gettimeofday(&end, NULL);
+        if (end.tv_usec < start.tv_usec) {
+            diff.tv_usec = 1000000 + end.tv_usec - start.tv_usec;
+        } else {
+            diff.tv_usec = end.tv_usec - start.tv_usec;
+        }
+        usleep((1000000 - diff.tv_usec) / clock_rate);
     }
 }
 
