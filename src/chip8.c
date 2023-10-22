@@ -96,14 +96,19 @@ int main(int argc, char **argv) {
         fclose(ROM);
         exit(0);
     }
+
     initscr();
     cbreak();
     noecho();
     nodelay(stdscr, TRUE);
     clear();
+#ifdef __APPLE__ || __UNIX__
     pthread_create(&id, NULL, enable_keyboard_raw_mode, NULL);
+#endif
     instruction_loop();
+#ifdef __APPLE__ || __UNIX__
     pthread_join(id, NULL);
+#endif
     fflush(stdout);
     fclose(ROM);
     endwin();

@@ -4,6 +4,7 @@
 #include "IO.h"
 #include "chip8.h"
 
+#ifdef __APPLE__
 void *enable_keyboard_raw_mode() {
     CGEventMask eventMask = CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged) | CGEventMaskBit(kCGEventKeyUp);
     CFMachPortRef eventTap = CGEventTapCreate(
@@ -42,14 +43,9 @@ CGEventRef CGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef e
     return event;
 }
 
-void set_chip8_key(uint8_t chip8_key, bool state) {
-    if (chip8_key < 0 || chip8_key > KEYPAD_SIZE) {
-        return;
-    }
-    kp[chip8_key] = state; 
-}
+#endif
 
-int8_t map_key_to_chip8_key(CGKeyCode keycode) {
+int8_t map_key_to_chip8_key(uint16_t keycode) {
     switch (keycode) {
         case 18: return 0x1; // 1
         case 19: return 0x2; // 2
@@ -71,4 +67,9 @@ int8_t map_key_to_chip8_key(CGKeyCode keycode) {
     }
 }
 
-
+void set_chip8_key(uint8_t chip8_key, bool state) {
+    if (chip8_key < 0 || chip8_key > KEYPAD_SIZE) {
+        return;
+    }
+    kp[chip8_key] = state; 
+}

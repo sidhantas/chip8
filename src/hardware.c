@@ -37,7 +37,7 @@ void initialize_hardware() {
 }
 
 void update_tick() {
-    struct timespec tim, tim2;
+    struct timespec diff;
     static struct timespec start_time = {0, 0};
     struct timespec end_time = {0, 0};
     if (start_time.tv_nsec == 0 && start_time.tv_sec == 0) {
@@ -45,9 +45,12 @@ void update_tick() {
     }
 
     clock_gettime(CLOCK_REALTIME, &end_time);
-    double elapsed_time = (double)(end_time.tv_sec - start_time.tv_sec) * 1.0e9 + (double)(end_time.tv_nsec - start_time.tv_nsec);
-
-    if (elapsed_time > (double)TIMER_TICK_NS) {
+    diff.tv_nsec = end_time.tv_nsec - start_time.tv_nsec;
+    if (diff.tv_nsec < 0) {
+        diff.tv_nsec += 1000000000; 
+    }
+    
+    if (diff.tv_nsec > TIMER_TICK_NS) {
         if (delay_timer > 0) {
             delay_timer--;
         }
